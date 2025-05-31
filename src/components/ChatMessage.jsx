@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Bot, ThumbsUp, Clock, User } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '../utils/cn';
@@ -64,14 +64,7 @@ const Avatar = ({ sender, size = 'default' }) => {
   );
 };
 
-export const ChatMessage = ({ message, isBot, onReaction, actions = [] }) => {
-  const [isLiked, setIsLiked] = useState(false);
-
-  const handleLike = () => {
-    setIsLiked(!isLiked);
-    onReaction?.();
-  };
-
+export const ChatMessage = ({ message, isBot }) => {
   return (
     <motion.div
       variants={messageVariants}
@@ -83,21 +76,7 @@ export const ChatMessage = ({ message, isBot, onReaction, actions = [] }) => {
         isBot ? 'justify-start' : 'flex-row-reverse'
       )}
     >
-      <div className="flex flex-col items-center gap-2">
-        <Avatar sender={message.sender} />
-        
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={handleLike}
-          className={cn(
-            'rounded-full p-1.5 transition-colors',
-            isLiked ? 'text-gemini-accent' : 'text-gemini-secondary hover:text-gemini-accent'
-          )}
-        >
-          <ThumbsUp className="h-4 w-4" />
-        </motion.button>
-      </div>
+      <Avatar sender={message.sender} />
 
       <div className="flex flex-col gap-1">
         <motion.div
@@ -119,26 +98,6 @@ export const ChatMessage = ({ message, isBot, onReaction, actions = [] }) => {
             {format(message.timestamp, 'h:mm a')}
           </span>
         </div>
-
-        {actions.length > 0 && (
-          <motion.div 
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-wrap gap-2 mt-2"
-          >
-            {actions.map((action, index) => (
-              <motion.button
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={action.onClick}
-                className="rounded-lg bg-gemini-surface dark:bg-gemini-dark-surface border border-gemini-border dark:border-gemini-dark-border px-3 py-1.5 text-sm text-gemini-primary dark:text-gemini-dark-primary hover:bg-gemini-bg dark:hover:bg-gemini-dark-bg transition-colors"
-              >
-                {action.label}
-              </motion.button>
-            ))}
-          </motion.div>
-        )}
       </div>
     </motion.div>
   );

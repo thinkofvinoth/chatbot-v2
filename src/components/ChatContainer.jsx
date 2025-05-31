@@ -30,16 +30,6 @@ export const ChatContainer = ({ messages, onSendMessage }) => {
             <ChatMessage
               message={message}
               isBot={message.sender.id === 'bot'}
-              actions={message.sender.id === 'bot' ? [
-                {
-                  label: '👍 Thanks!',
-                  onClick: () => handleQuickAction("Thanks for the help!"),
-                },
-                {
-                  label: '❓ Tell me more',
-                  onClick: () => handleQuickAction("Can you tell me more about this?"),
-                }
-              ] : undefined}
             />
           </div>
         ))}
