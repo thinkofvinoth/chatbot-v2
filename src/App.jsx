@@ -48,28 +48,30 @@ function App() {
 
     setMainMessages((prev) => [...prev, newMessage]);
 
-    setTimeout(() => {
-      const botResponse = {
-        id: (Date.now() + 1).toString(),
-        content: `I received your message: "${content}". How can I help you further?`,
-        sender: {
-          id: 'bot',
-          name: 'Gemini',
-          avatar: '',
-          status: 'online'
-        },
-        timestamp: new Date(),
-        read: true,
-        reactions: [],
-        attachments: [],
-        edited: false,
-      };
-      setMainMessages((prev) => [...prev, botResponse]);
-    }, 1000);
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    const botResponse = {
+      id: (Date.now() + 1).toString(),
+      content: `I received your message: "${content}". How can I help you further?`,
+      sender: {
+        id: 'bot',
+        name: 'Gemini',
+        avatar: '',
+        status: 'online'
+      },
+      timestamp: new Date(),
+      read: true,
+      reactions: [],
+      attachments: [],
+      edited: false,
+    };
+    
+    setMainMessages((prev) => [...prev, botResponse]);
   };
 
   const handleEmbeddedChatMessage = async (message) => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
     return `I received your message: "${message}". How can I help you further?`;
   };
 
@@ -81,7 +83,7 @@ function App() {
       </div>
 
       <div className="relative z-10">
-        <div className="container mx-auto max-w-4xl px-4 py-8">
+        <div className="container mx-auto max-w-[80%] px-4 py-8">
           <div className="mb-8">
             <h1 className="text-4xl font-bold text-gemini-primary dark:text-gemini-dark-primary">
               Gemini Chat
