@@ -97,38 +97,44 @@ const MessageActions = ({ isBot }) => (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    className="absolute right-0 top-0 hidden group-hover:flex gap-1 p-2"
+    className="flex items-center gap-2 mt-2"
   >
     <motion.button
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="p-1.5 rounded-full bg-gemini-surface/80 dark:bg-gemini-dark-surface/80 
+      className="p-1.5 rounded-full bg-gemini-surface dark:bg-gemini-dark-surface 
         text-gemini-secondary dark:text-gemini-dark-secondary hover:text-gemini-accent 
-        dark:hover:text-gemini-accent backdrop-blur-sm border border-gemini-border/50 
-        dark:border-gemini-dark-border/50"
+        dark:hover:text-gemini-accent border border-gemini-border 
+        dark:border-gemini-dark-border transition-colors"
     >
       <ThumbsUp className="h-4 w-4" />
     </motion.button>
     <motion.button
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="p-1.5 rounded-full bg-gemini-surface/80 dark:bg-gemini-dark-surface/80 
+      className="p-1.5 rounded-full bg-gemini-surface dark:bg-gemini-dark-surface 
         text-gemini-secondary dark:text-gemini-dark-secondary hover:text-gemini-accent 
-        dark:hover:text-gemini-accent backdrop-blur-sm border border-gemini-border/50 
-        dark:border-gemini-dark-border/50"
+        dark:hover:text-gemini-accent border border-gemini-border 
+        dark:border-gemini-dark-border transition-colors"
     >
       <ThumbsDown className="h-4 w-4" />
     </motion.button>
     <motion.button
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="p-1.5 rounded-full bg-gemini-surface/80 dark:bg-gemini-dark-surface/80 
+      className="p-1.5 rounded-full bg-gemini-surface dark:bg-gemini-dark-surface 
         text-gemini-secondary dark:text-gemini-dark-secondary hover:text-gemini-accent 
-        dark:hover:text-gemini-accent backdrop-blur-sm border border-gemini-border/50 
-        dark:border-gemini-dark-border/50"
+        dark:hover:text-gemini-accent border border-gemini-border 
+        dark:border-gemini-dark-border transition-colors"
     >
       <Share2 className="h-4 w-4" />
     </motion.button>
+    <div className="flex items-center gap-1 ml-2">
+      <Clock className="h-3.5 w-3.5 text-gemini-secondary dark:text-gemini-dark-secondary" />
+      <span className="text-xs text-gemini-secondary dark:text-gemini-dark-secondary">
+        {format(message.timestamp, 'h:mm a')}
+      </span>
+    </div>
   </motion.div>
 );
 
@@ -143,7 +149,7 @@ export const ChatMessage = ({ message, isBot, isThinking }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       className={cn(
-        'group relative flex items-end gap-2 px-4',
+        'relative flex items-start gap-2 px-4',
         isBot ? 'justify-start' : 'flex-row-reverse'
       )}
     >
@@ -161,15 +167,8 @@ export const ChatMessage = ({ message, isBot, isThinking }) => {
           )}
         >
           {message.content}
-          <MessageActions isBot={isBot} />
         </motion.div>
-
-        <div className="flex items-center gap-2 px-1">
-          <Clock className="h-3.5 w-3.5 text-gemini-secondary dark:text-gemini-dark-secondary" />
-          <span className="text-xs text-gemini-secondary dark:text-gemini-dark-secondary">
-            {format(message.timestamp, 'h:mm a')}
-          </span>
-        </div>
+        <MessageActions isBot={isBot} message={message} />
       </div>
     </motion.div>
   );
