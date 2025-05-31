@@ -36,13 +36,25 @@ export const Header = ({
             >
               {title}
             </motion.h1>
-            <motion.p 
+            <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className={`text-sm ${theme.secondaryColor}`}
+              className="flex items-center gap-2"
             >
-              {subtitle}
-            </motion.p>
+              <p className={`text-sm ${theme.secondaryColor}`}>
+                {subtitle}
+              </p>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="flex items-center"
+              >
+                <span className="inline-flex text-sm font-medium bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-transparent bg-clip-text animate-gradient">
+                  Hello Vinod! 👋
+                </span>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
 
