@@ -4,12 +4,12 @@ import { useThemeStore } from '../store/useThemeStore';
 import { motion } from 'framer-motion';
 
 export const Header = ({
-  title = 'CSWynk',
+  title = 'Gemini',
   subtitle = 'AI Assistant',
   onClose,
   theme = {
-    primaryColor: 'text-cswynk-accent',
-    secondaryColor: 'text-cswynk-secondary dark:text-cswynk-dark-secondary',
+    primaryColor: 'text-gemini-accent',
+    secondaryColor: 'text-gemini-secondary dark:text-gemini-dark-secondary',
   },
 }) => {
   const { isDarkMode, toggleTheme } = useThemeStore();
@@ -18,13 +18,13 @@ export const Header = ({
     <motion.div 
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="sticky top-0 z-10 border-b border-cswynk-border dark:border-cswynk-dark-border bg-cswynk-surface/95 dark:bg-cswynk-dark-surface/95 backdrop-blur-xl px-6 py-4"
+      className="sticky top-0 z-10 border-b border-gemini-border dark:border-gemini-dark-border bg-gemini-surface/95 dark:bg-gemini-dark-surface/95 backdrop-blur-xl px-6 py-4"
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <motion.div 
             whileHover={{ scale: 1.05 }}
-            className="flex h-10 w-10 items-center justify-center rounded-xl bg-cswynk-accent"
+            className="flex h-10 w-10 items-center justify-center rounded-xl bg-gemini-accent"
           >
             <Bot className="h-6 w-6 text-white" />
           </motion.div>
@@ -51,7 +51,7 @@ export const Header = ({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleTheme}
-            className="rounded-full p-2 text-cswynk-secondary hover:bg-cswynk-bg dark:text-cswynk-dark-secondary dark:hover:bg-cswynk-dark-bg"
+            className="rounded-full p-2 text-gemini-secondary hover:bg-gemini-bg dark:text-gemini-dark-secondary dark:hover:bg-gemini-dark-bg"
           >
             <motion.div
               initial={false}
@@ -67,7 +67,7 @@ export const Header = ({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={onClose}
-              className="rounded-full p-2 text-cswynk-secondary hover:bg-cswynk-bg dark:text-cswynk-dark-secondary dark:hover:bg-cswynk-dark-bg"
+              className="rounded-full p-2 text-gemini-secondary hover:bg-gemini-bg dark:text-gemini-dark-secondary dark:hover:bg-gemini-dark-bg"
             >
               <X className="h-5 w-5" />
             </motion.button>

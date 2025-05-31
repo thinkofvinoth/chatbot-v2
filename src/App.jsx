@@ -8,10 +8,10 @@ import { useThemeStore } from './store/useThemeStore';
 const initialMessages = [
   {
     id: '1',
-    content: "Hi! I'm CSWynk, your AI assistant. How can I help you today?",
+    content: "Hi! I'm Gemini, your AI assistant. How can I help you today?",
     sender: {
       id: 'bot',
-      name: 'CSWynk',
+      name: 'Gemini',
       avatar: '',
       status: 'online'
     },
@@ -56,7 +56,7 @@ function App() {
       content: `I received your message: "${content}". How can I help you further?`,
       sender: {
         id: 'bot',
-        name: 'CSWynk',
+        name: 'Gemini',
         avatar: '',
         status: 'online'
       },
@@ -78,28 +78,28 @@ function App() {
   return (
     <div className={`relative min-h-screen ${isDarkMode ? 'dark' : ''}`}>
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-cswynk-bg dark:bg-cswynk-dark-bg transition-colors duration-500" />
-        <div className="absolute inset-0 bg-gradient-to-br from-cswynk-accent/5 to-transparent dark:bg-dark-gradient dark:bg-dark-noise mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gemini-bg dark:bg-gemini-dark-bg transition-colors duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-br from-gemini-accent/5 to-transparent dark:bg-dark-gradient dark:bg-dark-noise mix-blend-overlay" />
       </div>
 
       <div className="relative z-10">
         <div className="container mx-auto max-w-[80%] px-4 py-8">
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-cswynk-primary dark:text-cswynk-dark-primary">
-              CSWynk Chat
+            <h1 className="text-4xl font-bold text-gemini-primary dark:text-gemini-dark-primary">
+              Gemini Chat
             </h1>
-            <p className="mt-2 text-lg text-cswynk-secondary dark:text-cswynk-dark-secondary">
+            <p className="mt-2 text-lg text-gemini-secondary dark:text-gemini-dark-secondary">
               Experience AI conversations in a familiar interface
             </p>
           </div>
 
-          <div className="rounded-2xl bg-cswynk-surface dark:bg-cswynk-dark-surface shadow-xl overflow-hidden border border-cswynk-border dark:border-cswynk-dark-border backdrop-blur-lg">
+          <div className="rounded-2xl bg-gemini-surface dark:bg-gemini-dark-surface shadow-xl overflow-hidden border border-gemini-border dark:border-gemini-dark-border backdrop-blur-lg">
             <Header
-              title="CSWynk"
+              title="Gemini"
               subtitle="AI Assistant"
               theme={{
-                primaryColor: 'text-cswynk-accent dark:text-cswynk-dark-accent',
-                secondaryColor: 'text-cswynk-secondary dark:text-cswynk-dark-secondary',
+                primaryColor: 'text-gemini-accent dark:text-gemini-dark-accent',
+                secondaryColor: 'text-gemini-secondary dark:text-gemini-dark-secondary',
               }}
             />
             <ChatContainer
@@ -114,12 +114,12 @@ function App() {
         initialMessages={initialMessages}
         position="bottom-right"
         buttonIcon={<MessageCircle className="h-6 w-6" />}
-        title="CSWynk Quick Chat"
+        title="Gemini Quick Chat"
         subtitle="Get instant help"
         theme={{
-          primaryColor: 'text-cswynk-accent dark:text-cswynk-dark-accent',
-          secondaryColor: 'text-cswynk-secondary dark:text-cswynk-dark-secondary',
-          buttonColor: 'bg-cswynk-accent hover:bg-cswynk-accent/90'
+          primaryColor: 'text-gemini-accent dark:text-gemini-dark-accent',
+          secondaryColor: 'text-gemini-secondary dark:text-gemini-dark-secondary',
+          buttonColor: 'bg-gemini-accent hover:bg-gemini-accent/90'
         }}
         onSendMessage={handleEmbeddedChatMessage}
       />
@@ -127,4 +127,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
