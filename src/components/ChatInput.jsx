@@ -216,10 +216,13 @@ export const ChatInput = ({ onSendMessage }) => {
               whileTap={{ scale: 0.95 }}
               onClick={handleSend}
               disabled={!message.trim()}
-              className="flex h-11 w-11 items-center justify-center rounded-full 
-                bg-gemini-accent text-white shadow-sm transition-all duration-200 
-                hover:bg-gemini-accent/90
-                disabled:opacity-50 disabled:cursor-not-allowed"
+              className={`flex h-11 w-11 items-center justify-center rounded-full 
+                shadow-sm transition-all duration-200 
+                ${message.trim() 
+                  ? 'bg-gemini-accent text-white hover:bg-gemini-accent/90' 
+                  : 'bg-gemini-bg text-gemini-secondary dark:bg-gemini-dark-bg dark:text-gemini-dark-secondary'
+                }
+                disabled:opacity-50 disabled:cursor-not-allowed`}
             >
               <Send className="h-5 w-5" />
             </motion.button>
