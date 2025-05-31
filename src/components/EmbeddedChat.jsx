@@ -6,17 +6,62 @@ import { ChatContainer } from './ChatContainer';
 import { useThemeStore } from '../store/useThemeStore';
 
 const defaultTheme = {
-  primaryColor: 'from-indigo-500 to-purple-500',
-  secondaryColor: 'from-pink-500 to-rose-500',
-  buttonColor: 'from-indigo-500 to-purple-500',
+  primaryColor: 'text-gemini-accent dark:text-gemini-dark-accent',
+  secondaryColor: 'text-gemini-secondary dark:text-gemini-dark-secondary',
+  buttonColor: 'bg-gemini-accent hover:bg-gemini-accent/90',
+};
+
+const chatWindowVariants = {
+  hidden: { 
+    opacity: 0,
+    scale: 0.95,
+    y: 20 
+  },
+  visible: { 
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 30
+    }
+  },
+  exit: { 
+    opacity: 0,
+    scale: 0.95,
+    y: 20,
+    transition: {
+      duration: 0.2
+    }
+  }
+};
+
+const buttonVariants = {
+  initial: { scale: 0 },
+  animate: { 
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 500,
+      damping: 30
+    }
+  },
+  hover: { 
+    scale: 1.1,
+    transition: {
+      duration: 0.2
+    }
+  },
+  tap: { scale: 0.9 }
 };
 
 export const EmbeddedChat = ({
   initialMessages = [],
   position = 'bottom-right',
   buttonIcon,
-  title = 'AI Assistant',
-  subtitle = 'Always here to help',
+  title = 'CSWynk',
+  subtitle = 'AI Assistant',
   theme = defaultTheme,
   onSendMessage,
   isEmbedded = false,
@@ -75,7 +120,13 @@ export const EmbeddedChat = ({
   };
 
   const ChatWindow = () => (
-    <div className={`overflow-hidden rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm ring-1 ring-black/5 dark:ring-white/5 shadow-2xl ${isDarkMode ? 'dark' : ''}`}>
+    <motion.div
+      variants={chatWindowVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className={`overflow-hidden rounded-2xl bg-gemini-surface dark:bg-gemini-dark-surface backdrop-blur-sm border border-gemini-border dark:border-gemini-dark-border shadow-2xl ${isDarkMode ? 'dark' : ''}`}
+    >
       <Header 
         title={title}
         subtitle={subtitle}
@@ -86,7 +137,7 @@ export const EmbeddedChat = ({
         messages={messages}
         onSendMessage={handleSendMessage}
       />
-    </div>
+    </motion.div>
   );
 
   if (isEmbedded) {
@@ -97,30 +148,31 @@ export const EmbeddedChat = ({
     <>
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className={`fixed ${positionClasses[position]} z-50 w-[380px] sm:w-[440px]`}
-          >
+          <div className={`fixed ${positionClasses[position]} z-50 w-[380px] sm:w-[440px]`}>
             <ChatWindow />
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
 
       <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        variants={buttonVariants}
+        initial="initial"
+        animate="animate"
+        whileHover="hover"
+        whileTap="tap"
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed ${positionClasses[position]} z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r ${theme.buttonColor} text-white shadow-lg`}
+        className={`fixed ${positionClasses[position]} z-50 flex h-14 w-14 items-center justify-center rounded-full ${theme.buttonColor} text-white shadow-lg`}
       >
-        {isOpen ? (
-          <X className="h-6 w-6" />
-        ) : (
-          buttonIcon || <MessageSquare className="h-6 w-6" />
-        )}
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {isOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            buttonIcon || <MessageSquare className="h-6 w-6" />
+          )}
+        </motion.div>
       </motion.button>
     </>
   );
