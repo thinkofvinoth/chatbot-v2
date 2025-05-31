@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Bot, Clock, User, Download, Camera } from 'lucide-react';
+import { Bot, Clock, User, ThumbsUp, RotateCcw, Share2, MoreVertical } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '../utils/cn';
 
@@ -68,17 +68,39 @@ const MessageActions = ({ isBot }) => (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    className="absolute right-0 top-0 hidden group-hover:flex gap-2 p-2"
+    className="absolute right-2 top-2 hidden group-hover:flex items-center gap-1"
   >
     <motion.button
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="p-1.5 rounded-full bg-gemini-surface/80 dark:bg-gemini-dark-surface/80 
-        text-gemini-secondary dark:text-gemini-dark-secondary hover:text-gemini-accent 
-        dark:hover:text-gemini-accent backdrop-blur-sm border border-gemini-border/50 
-        dark:border-gemini-dark-border/50"
+      className="p-1.5 rounded-full hover:bg-gemini-bg/80 dark:hover:bg-gemini-dark-bg/80 
+        text-gemini-secondary dark:text-gemini-dark-secondary"
     >
-      <Camera className="h-4 w-4" />
+      <ThumbsUp className="h-4 w-4" />
+    </motion.button>
+    <motion.button
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      className="p-1.5 rounded-full hover:bg-gemini-bg/80 dark:hover:bg-gemini-dark-bg/80 
+        text-gemini-secondary dark:text-gemini-dark-secondary"
+    >
+      <RotateCcw className="h-4 w-4" />
+    </motion.button>
+    <motion.button
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      className="p-1.5 rounded-full hover:bg-gemini-bg/80 dark:hover:bg-gemini-dark-bg/80 
+        text-gemini-secondary dark:text-gemini-dark-secondary"
+    >
+      <Share2 className="h-4 w-4" />
+    </motion.button>
+    <motion.button
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      className="p-1.5 rounded-full hover:bg-gemini-bg/80 dark:hover:bg-gemini-dark-bg/80 
+        text-gemini-secondary dark:text-gemini-dark-secondary"
+    >
+      <MoreVertical className="h-4 w-4" />
     </motion.button>
   </motion.div>
 );
