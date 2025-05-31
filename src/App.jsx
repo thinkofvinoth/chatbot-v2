@@ -78,7 +78,7 @@ function App() {
   return (
     <div className={`relative min-h-screen ${isDarkMode ? 'dark' : ''}`}>
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-light-gradient dark:bg-gemini-dark-bg transition-colors duration-500" />
+        <div className="absolute inset-0 bg-light-gradient dark:bg-gemini-dark-bg transition-colors duration-500 animate-gradient" />
         <div className="absolute inset-0 bg-light-noise dark:bg-dark-gradient dark:bg-dark-noise mix-blend-overlay" />
       </div>
 
