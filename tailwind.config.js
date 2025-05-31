@@ -27,8 +27,6 @@ export default {
         sans: ['Google Sans', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'light-gradient': 'linear-gradient(-45deg, #EFF6FF 0%, #F0FDFA 25%, #FAF5FF 50%, #EFF6FF 75%, #F0FDFA 100%)',
-        'light-noise': 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.03\'/%3E%3C/svg%3E")',
         'dark-gradient': 'linear-gradient(to bottom right, rgba(59, 130, 246, 0.05), rgba(147, 51, 234, 0.05))',
         'dark-noise': 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.05\'/%3E%3C/svg%3E")',
       },
@@ -41,12 +39,12 @@ export default {
       keyframes: {
         gradient: {
           '0%, 100%': {
-            'background-size': '400% 400%',
-            'background-position': '0% 50%'
+            'background-size': '200% 200%',
+            'background-position': 'left center',
           },
           '50%': {
-            'background-size': '400% 400%',
-            'background-position': '100% 50%'
+            'background-size': '200% 200%',
+            'background-position': 'right center',
           },
         },
         shimmer: {

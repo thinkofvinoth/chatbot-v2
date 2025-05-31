@@ -78,8 +78,8 @@ function App() {
   return (
     <div className={`relative min-h-screen ${isDarkMode ? 'dark' : ''}`}>
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-light-gradient dark:bg-gemini-dark-bg transition-colors duration-500 animate-gradient" />
-        <div className="absolute inset-0 bg-light-noise dark:bg-dark-gradient dark:bg-dark-noise mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gemini-bg dark:bg-gemini-dark-bg transition-colors duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-br from-gemini-accent/5 to-transparent dark:bg-dark-gradient dark:bg-dark-noise mix-blend-overlay" />
       </div>
 
       <div className="relative z-10">
@@ -93,7 +93,7 @@ function App() {
             </p>
           </div>
 
-          <div className="rounded-2xl bg-white/80 dark:bg-gemini-dark-surface shadow-xl overflow-hidden border border-gemini-border dark:border-gemini-dark-border backdrop-blur-lg">
+          <div className="rounded-2xl bg-gemini-surface dark:bg-gemini-dark-surface shadow-xl overflow-hidden border border-gemini-border dark:border-gemini-dark-border backdrop-blur-lg">
             <Header
               title="CSWynk"
               subtitle="AI Assistant"
