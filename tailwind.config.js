@@ -13,11 +13,11 @@ export default {
           accent: '#1A73E8',
           border: '#E4E7EB',
           dark: {
-            bg: '#1E1E1E',
-            surface: '#2D2D2D',
-            primary: '#FFFFFF',
-            secondary: '#9AA0A6',
-            border: '#3C4043'
+            bg: '#0D1117',
+            surface: '#161B22',
+            primary: '#F0F6FC',
+            secondary: '#8B949E',
+            border: '#30363D'
           }
         }
       },
