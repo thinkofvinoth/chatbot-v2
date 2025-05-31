@@ -5,32 +5,30 @@ export default {
   theme: {
     extend: {
       colors: {
-        dark: {
-          bg: '#0F172A',
-          secondary: '#1E293B',
-          surface: '#293548',
-          text: '#E2E8F0',
-          muted: '#94A3B8',
-          accent: {
-            DEFAULT: '#3B82F6',
-            hover: '#2563EB',
-          },
-          accent2: {
-            DEFAULT: '#8B5CF6',
-            hover: '#7C3AED',
-          },
-          success: '#14B8A6',
-          warning: '#F59E0B',
-          error: '#E11D48',
-          border: {
-            DEFAULT: '#334155',
-            hover: '#475569',
+        gemini: {
+          bg: '#F8FAFD',
+          surface: '#FFFFFF',
+          primary: '#1F1F1F',
+          secondary: '#626876',
+          accent: '#1A73E8',
+          border: '#E4E7EB',
+          dark: {
+            bg: '#1E1E1E',
+            surface: '#2D2D2D',
+            primary: '#FFFFFF',
+            secondary: '#9AA0A6',
+            border: '#3C4043'
           }
         }
+      },
+      fontFamily: {
+        sans: ['Google Sans', 'system-ui', 'sans-serif'],
       },
       animation: {
         'gradient': 'gradient 8s linear infinite',
         'shimmer': 'shimmer 8s linear infinite',
+        'fade-in': 'fadeIn 0.5s ease-out',
+        'slide-up': 'slideUp 0.3s ease-out',
       },
       keyframes: {
         gradient: {
@@ -46,13 +44,16 @@ export default {
         shimmer: {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(100%)' }
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(10px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' }
         }
-      },
-      backgroundImage: {
-        'dot-pattern': 'radial-gradient(circle, currentColor 1px, transparent 1px)',
-        'mesh-pattern': 'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)',
-        'noise-pattern': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")",
-      },
+      }
     },
   },
   plugins: [],
