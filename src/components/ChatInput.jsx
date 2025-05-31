@@ -3,11 +3,13 @@ import { Send, Smile, Paperclip, Mic } from 'lucide-react';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useThemeStore } from '../store/useThemeStore';
 
 export const ChatInput = ({ onSendMessage }) => {
   const [message, setMessage] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const emojiButtonRef = useRef(null);
+  const { isDarkMode } = useThemeStore();
 
   const handleSend = () => {
     if (message.trim()) {
