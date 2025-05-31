@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "webpack serve --mode development --open",
+    "dev": "npx webpack serve --mode development --open",
     "build": "webpack --mode production",
     "lint": "eslint .",
     "preview": "sirv dist --port 3000"
