@@ -56,14 +56,15 @@ const RecentEmojis = ({ onSelect }) => {
       className="flex gap-1 px-2 py-1 bg-gemini-bg dark:bg-gemini-dark-bg rounded-full border border-gemini-border dark:border-gemini-dark-border"
     >
       {recentEmojis.map((emoji, index) => (
-        <motion.div
+        <motion.button
           key={index}
           whileHover={{ scale: 1.2 }}
-          onHoverStart={() => onSelect({ native: emoji })}
-          className="text-lg hover:bg-gemini-surface dark:hover:bg-gemini-dark-surface p-1 rounded-full cursor-default"
+          whileTap={{ scale: 0.9 }}
+          className="text-lg hover:bg-gemini-surface dark:hover:bg-gemini-dark-surface p-1 rounded-full"
+          onClick={() => onSelect({ native: emoji })}
         >
           {emoji}
-        </motion.div>
+        </motion.button>
       ))}
     </motion.div>
   );
