@@ -2,6 +2,21 @@ import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, HelpCircle, FileText, Settings, ThumbsUp, Repeat, PlusCircle, Search } from 'lucide-react';
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
+
 export const QuickActions = ({ onAction, messages = [] }) => {
   const lastMessage = messages[messages.length - 1];
   const isLastMessageFromBot = lastMessage?.sender.id === 'bot';
@@ -49,21 +64,30 @@ export const QuickActions = ({ onAction, messages = [] }) => {
   }, [isLastMessageFromBot, lastMessage]);
 
   return (
-    <div className="border-t border-gray-100 bg-gray-50/50 dark:border-gray-800 dark:bg-gray-900/50 px-4 py-3">
+    <motion.div 
+      variants={container}
+      initial="hidden"
+      animate="show"
+      className="border-t border-gemini-border dark:border-gemini-dark-border bg-gemini-surface/95 dark:bg-gemini-dark-surface/95 px-4 py-3"
+    >
       <div className="flex flex-wrap gap-2 justify-center">
         {quickActions.map((action, index) => (
           <motion.button
             key={index}
+            variants={item}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => onAction(action.content)}
-            className="inline-flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-sm text-gray-700 shadow-sm ring-1 ring-gray-900/5 transition-colors hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-200 dark:ring-white/5 dark:hover:bg-gray-700"
+            className="inline-flex items-center gap-2 rounded-lg bg-gemini-bg px-3 py-2 text-sm 
+              text-gemini-primary shadow-sm border border-gemini-border transition-colors 
+              hover:bg-gemini-bg/70 dark:bg-gemini-dark-bg dark:text-gemini-dark-primary 
+              dark:border-gemini-dark-border dark:hover:bg-gemini-dark-bg/70"
           >
             {action.icon}
             {action.label}
           </motion.button>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
