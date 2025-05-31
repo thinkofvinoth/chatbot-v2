@@ -4,7 +4,7 @@ import { useThemeStore } from '../store/useThemeStore';
 import { motion } from 'framer-motion';
 
 export const Header = ({
-  title = 'Gemini',
+  title = 'CSWynk',
   subtitle = 'AI Assistant',
   onClose,
   theme = {

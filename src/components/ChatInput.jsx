@@ -84,7 +84,7 @@ export const ChatInput = ({ onSendMessage }) => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Message Gemini..."
+            placeholder="Message CSWynk..."
             className="flex-1 rounded-xl border border-gemini-border bg-gemini-bg/50 px-4 py-3 
               text-gemini-primary placeholder-gemini-secondary shadow-sm transition-all duration-200 
               focus:border-gemini-accent focus:outline-none focus:ring-1 focus:ring-gemini-accent

@@ -8,10 +8,10 @@ import { useThemeStore } from './store/useThemeStore';
 const initialMessages = [
   {
     id: '1',
-    content: "Hi! I'm Gemini, your AI assistant. How can I help you today?",
+    content: "Hi! I'm CSWynk, your AI assistant. How can I help you today?",
     sender: {
       id: 'bot',
-      name: 'Gemini',
+      name: 'CSWynk',
       avatar: '',
       status: 'online'
     },
@@ -56,7 +56,7 @@ function App() {
       content: `I received your message: "${content}". How can I help you further?`,
       sender: {
         id: 'bot',
-        name: 'Gemini',
+        name: 'CSWynk',
         avatar: '',
         status: 'online'
       },
@@ -86,7 +86,7 @@ function App() {
         <div className="container mx-auto max-w-[80%] px-4 py-8">
           <div className="mb-8">
             <h1 className="text-4xl font-bold text-gemini-primary dark:text-gemini-dark-primary">
-              Gemini Chat
+              CSWynk Chat
             </h1>
             <p className="mt-2 text-lg text-gemini-secondary dark:text-gemini-dark-secondary">
               Experience AI conversations in a familiar interface
@@ -95,7 +95,7 @@ function App() {
 
           <div className="rounded-2xl bg-gemini-surface dark:bg-gemini-dark-surface shadow-xl overflow-hidden border border-gemini-border dark:border-gemini-dark-border backdrop-blur-lg">
             <Header
-              title="Gemini"
+              title="CSWynk"
               subtitle="AI Assistant"
               theme={{
                 primaryColor: 'text-gemini-accent dark:text-gemini-dark-accent',
@@ -114,7 +114,7 @@ function App() {
         initialMessages={initialMessages}
         position="bottom-right"
         buttonIcon={<MessageCircle className="h-6 w-6" />}
-        title="Gemini Quick Chat"
+        title="CSWynk Quick Chat"
         subtitle="Get instant help"
         theme={{
           primaryColor: 'text-gemini-accent dark:text-gemini-dark-accent',
@@ -127,4 +127,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
