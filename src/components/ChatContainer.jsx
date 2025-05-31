@@ -15,10 +15,12 @@ export const ChatContainer = ({ messages, onSendMessage }) => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, isThinking]);
 
-  const handleQuickAction = (content) => {
-    onSendMessage(content);
+  const handleQuickAction = async (content) => {
+    setIsThinking(true);
+    await onSendMessage(content);
+    setIsThinking(false);
   };
 
   const handleSendMessage = async (content) => {
@@ -33,13 +35,14 @@ export const ChatContainer = ({ messages, onSendMessage }) => {
         ref={chatContainerRef}
         className="chat-container flex-1 overflow-y-auto py-4"
       >
-        <AnimatePresence>
+        <AnimatePresence mode="popLayout">
           {messages.map((message) => (
             <motion.div
               key={message.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
               className="py-4"
             >
               <ChatMessage
@@ -50,9 +53,12 @@ export const ChatContainer = ({ messages, onSendMessage }) => {
           ))}
           {isThinking && (
             <motion.div
+              key="thinking"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="py-4"
             >
               <ChatMessage isThinking={true} />
             </motion.div>

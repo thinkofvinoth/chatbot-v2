@@ -1,14 +1,50 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Bot, Clock, User, Download, Camera } from 'lucide-react';
+import { Bot, Clock, User, Camera } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '../utils/cn';
 
-const messageVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0 },
-  exit: { opacity: 0, x: -10 }
-};
+const ThinkingIndicator = () => (
+  <div className="flex items-center gap-3 px-4">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="flex items-center justify-center rounded-full bg-gemini-accent text-white h-10 w-10"
+    >
+      <Bot className="h-6 w-6" />
+    </motion.div>
+    
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="flex flex-col gap-2 max-w-[80%]"
+    >
+      <div className="flex items-center gap-2 bg-gemini-surface dark:bg-gemini-dark-surface rounded-2xl p-4 border border-gemini-border dark:border-gemini-dark-border">
+        <div className="flex gap-1">
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.5, 1, 0.5]
+              }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                delay: i * 0.2
+              }}
+              className="h-2 w-2 rounded-full bg-gemini-accent"
+            />
+          ))}
+        </div>
+        <span className="text-sm text-gemini-secondary dark:text-gemini-dark-secondary font-medium">
+          Thinking...
+        </span>
+      </div>
+    </motion.div>
+  </div>
+);
 
 const Avatar = ({ sender, size = 'default' }) => {
   const sizeClasses = {
@@ -44,13 +80,6 @@ const Avatar = ({ sender, size = 'default' }) => {
     );
   }
 
-  const initials = sender.name
-    .split(' ')
-    .map(word => word[0])
-    .join('')
-    .toUpperCase()
-    .slice(0, 2);
-
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
@@ -59,7 +88,7 @@ const Avatar = ({ sender, size = 'default' }) => {
         sizeClasses[size]
       )}
     >
-      {initials || <User className="h-6 w-6" />}
+      <User className="h-6 w-6" />
     </motion.div>
   );
 };
@@ -83,52 +112,6 @@ const MessageActions = ({ isBot }) => (
   </motion.div>
 );
 
-const ThinkingIndicator = () => (
-  <div className="flex items-center gap-2 p-4">
-    <div className="flex gap-1">
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.5, 1, 0.5]
-        }}
-        transition={{
-          duration: 1,
-          repeat: Infinity,
-          delay: 0
-        }}
-        className="h-2 w-2 rounded-full bg-gemini-accent"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.5, 1, 0.5]
-        }}
-        transition={{
-          duration: 1,
-          repeat: Infinity,
-          delay: 0.2
-        }}
-        className="h-2 w-2 rounded-full bg-gemini-accent"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.5, 1, 0.5]
-        }}
-        transition={{
-          duration: 1,
-          repeat: Infinity,
-          delay: 0.4
-        }}
-        className="h-2 w-2 rounded-full bg-gemini-accent"
-      />
-    </div>
-    <span className="text-sm text-gemini-secondary dark:text-gemini-dark-secondary">
-      Thinking...
-    </span>
-  </div>
-);
-
 export const ChatMessage = ({ message, isBot, isThinking }) => {
   if (isThinking) {
     return <ThinkingIndicator />;
@@ -136,10 +119,9 @@ export const ChatMessage = ({ message, isBot, isThinking }) => {
 
   return (
     <motion.div
-      variants={messageVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
       className={cn(
         'group relative flex items-end gap-2 px-4',
         isBot ? 'justify-start' : 'flex-row-reverse'
