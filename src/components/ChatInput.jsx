@@ -33,7 +33,6 @@ const AttachmentMenu = ({ onClose }) => {
               accept={type.type}
               className="hidden"
               onChange={(e) => {
-                // Handle file selection
                 console.log('File selected:', e.target.files[0]);
                 onClose();
               }}
@@ -109,62 +108,67 @@ export const ChatInput = ({ onSendMessage }) => {
           animate={{ opacity: 1, y: 0 }}
           className="relative flex flex-col gap-2"
         >
-          <AnimatePresence>
-            {showRecentEmojis && !showEmojiPicker && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                className="absolute bottom-16 left-0"
-              >
-                <RecentEmojis onSelect={handleEmojiSelect} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-
           <div className="relative flex items-center gap-2">
-            <motion.button
-              ref={emojiButtonRef}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                setShowEmojiPicker(!showEmojiPicker);
-                setShowAttachMenu(false);
-                setShowRecentEmojis(!showEmojiPicker);
-              }}
-              className="rounded-full p-2 text-gemini-secondary hover:bg-gemini-bg dark:text-gemini-dark-secondary dark:hover:bg-gemini-dark-bg transition-colors"
+            <motion.div
+              onHoverStart={() => setShowRecentEmojis(true)}
+              onHoverEnd={() => !showEmojiPicker && setShowRecentEmojis(false)}
+              className="relative"
             >
-              <Smile className="h-5 w-5" />
-            </motion.button>
+              <motion.button
+                ref={emojiButtonRef}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  setShowEmojiPicker(!showEmojiPicker);
+                  setShowAttachMenu(false);
+                }}
+                className="rounded-full p-2 text-gemini-secondary hover:bg-gemini-bg dark:text-gemini-dark-secondary dark:hover:bg-gemini-dark-bg transition-colors"
+              >
+                <Smile className="h-5 w-5" />
+              </motion.button>
 
-            <AnimatePresence>
-              {showEmojiPicker && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="absolute bottom-16 left-0 z-50"
-                >
-                  <div className="relative">
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={() => setShowEmojiPicker(false)}
-                      className="absolute -right-2 -top-2 p-1 rounded-full bg-gemini-surface dark:bg-gemini-dark-surface border border-gemini-border dark:border-gemini-dark-border text-gemini-secondary dark:text-gemini-dark-secondary z-10"
-                    >
-                      <X className="h-4 w-4" />
-                    </motion.button>
-                    <Picker
-                      data={data}
-                      onEmojiSelect={handleEmojiSelect}
-                      theme={isDarkMode ? "dark" : "light"}
-                      previewPosition="none"
-                      skinTonePosition="none"
-                    />
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+              <AnimatePresence>
+                {showRecentEmojis && !showEmojiPicker && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute bottom-12 left-0 z-50"
+                  >
+                    <RecentEmojis onSelect={handleEmojiSelect} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <AnimatePresence>
+                {showEmojiPicker && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute bottom-16 left-0 z-50"
+                  >
+                    <div className="relative">
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => setShowEmojiPicker(false)}
+                        className="absolute -right-2 -top-2 p-1 rounded-full bg-gemini-surface dark:bg-gemini-dark-surface border border-gemini-border dark:border-gemini-dark-border text-gemini-secondary dark:text-gemini-dark-secondary z-10"
+                      >
+                        <X className="h-4 w-4" />
+                      </motion.button>
+                      <Picker
+                        data={data}
+                        onEmojiSelect={handleEmojiSelect}
+                        theme={isDarkMode ? "dark" : "light"}
+                        previewPosition="none"
+                        skinTonePosition="none"
+                      />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
 
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -172,7 +176,6 @@ export const ChatInput = ({ onSendMessage }) => {
               onClick={() => {
                 setShowAttachMenu(!showAttachMenu);
                 setShowEmojiPicker(false);
-                setShowRecentEmojis(false);
               }}
               className="rounded-full p-2 text-gemini-secondary hover:bg-gemini-bg dark:text-gemini-dark-secondary dark:hover:bg-gemini-dark-bg transition-colors"
             >
@@ -192,8 +195,6 @@ export const ChatInput = ({ onSendMessage }) => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyPress={handleKeyPress}
-              onFocus={() => setShowRecentEmojis(true)}
-              onBlur={() => setTimeout(() => setShowRecentEmojis(false), 200)}
               placeholder="Message CSWynk..."
               className="flex-1 rounded-xl border border-gemini-border bg-gemini-bg/50 px-4 py-3 
                 text-gemini-primary placeholder-gemini-secondary shadow-sm transition-all duration-200 
