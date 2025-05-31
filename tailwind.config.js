@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        gemini: {
+        cswynk: {
           bg: '#F8FAFD',
           surface: '#FFFFFF',
           primary: '#1F1F1F',
