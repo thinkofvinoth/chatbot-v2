@@ -79,7 +79,7 @@ function App() {
     <div className={`relative min-h-screen ${isDarkMode ? 'dark' : ''}`}>
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gemini-bg dark:bg-gemini-dark-bg transition-colors duration-500" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(26,115,232,0.1),transparent)]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-gemini-accent/5 to-transparent dark:bg-dark-gradient dark:bg-dark-noise mix-blend-overlay" />
       </div>
 
       <div className="relative z-10">
@@ -93,12 +93,12 @@ function App() {
             </p>
           </div>
 
-          <div className="rounded-2xl bg-gemini-surface dark:bg-gemini-dark-surface shadow-lg overflow-hidden border border-gemini-border dark:border-gemini-dark-border">
+          <div className="rounded-2xl bg-gemini-surface dark:bg-gemini-dark-surface shadow-xl overflow-hidden border border-gemini-border dark:border-gemini-dark-border backdrop-blur-lg">
             <Header
               title="Gemini"
               subtitle="AI Assistant"
               theme={{
-                primaryColor: 'text-gemini-accent',
+                primaryColor: 'text-gemini-accent dark:text-gemini-dark-accent',
                 secondaryColor: 'text-gemini-secondary dark:text-gemini-dark-secondary',
               }}
             />
@@ -117,7 +117,7 @@ function App() {
         title="Gemini Quick Chat"
         subtitle="Get instant help"
         theme={{
-          primaryColor: 'text-gemini-accent',
+          primaryColor: 'text-gemini-accent dark:text-gemini-dark-accent',
           secondaryColor: 'text-gemini-secondary dark:text-gemini-dark-secondary',
           buttonColor: 'bg-gemini-accent hover:bg-gemini-accent/90'
         }}
@@ -126,5 +126,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
