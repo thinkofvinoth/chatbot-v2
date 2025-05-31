@@ -93,7 +93,7 @@ const Avatar = ({ sender, size = 'default' }) => {
   );
 };
 
-const MessageActions = ({ isBot }) => (
+const MessageActions = ({ isBot, message }) => (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
